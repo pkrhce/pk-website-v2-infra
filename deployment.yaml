@@ -3,7 +3,9 @@ kind: Deployment
 metadata:
   name: website-deployment
 spec:
-  replicas: 2
+  replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: website
@@ -11,8 +13,6 @@ spec:
     metadata:
       labels:
         app: website
-      annotations:
-        rollout: "update-1" 
     spec:
       containers:
       - name: website
@@ -25,6 +25,5 @@ spec:
           mountPath: /usr/share/nginx/html/data
       volumes:
       - name: website-storage
-        gcePersistentDisk:
-          pdName: pk-persistent-disk-v2
-          fsType: ext4
+        persistentVolumeClaim:
+          claimName: website-pvc  # <--- Industry Standard!
