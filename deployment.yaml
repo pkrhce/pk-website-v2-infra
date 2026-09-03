@@ -17,6 +17,7 @@ spec:
       containers:
       - name: website
         image: us-central1-docker.pkg.dev/pk-sandbox-507311/pk-repo-v2/pk-website:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         volumeMounts:
