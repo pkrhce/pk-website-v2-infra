@@ -13,9 +13,8 @@ spec:
     metadata:
       labels:
         app: website
-      # ADD THIS ANNOTATION BLOCK:
       annotations:
-        rollout: "update-1" 
+        rollout: "update-2" 
     spec:
       containers:
       - name: website
@@ -23,3 +22,9 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        # ADD THIS BLOCK:
+        resources:
+          requests:
+            cpu: "100m" # Requests 10% of a single CPU core
+          limits:
+            cpu: "200m" # Cannot use more than 20% of a single CPU core
