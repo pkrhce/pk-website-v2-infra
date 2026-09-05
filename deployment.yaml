@@ -13,6 +13,9 @@ spec:
     metadata:
       labels:
         app: website
+      # ADD THIS ANNOTATION BLOCK:
+      annotations:
+        rollout: "update-1" 
     spec:
       containers:
       - name: website
